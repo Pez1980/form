@@ -1,0 +1,84 @@
+<div id="form-container" style="max-width: 600px; margin: 0 auto; font-family: 'Montserrat', sans-serif; font-size: 16px; background-color: #0d0a2c; padding: 30px; border-radius: 8px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); box-sizing: border-box; color: #ffffff;">
+  <form id="lead-form" style="width: 100%; box-sizing: border-box;">
+
+    <!-- Hidden static key -->
+    <input type="hidden" name="form-type" value="lead-form">
+
+    <label for="phonxe" style="font-size: 15px; font-weight: bold; color: #c742a8; margin-bottom: 10px; display: block;">Phone Number (include country code):</label>
+    <input type="tel" id="phone" name="phone" pattern="^\+[1-9]\d{1,14}$" placeholder="+1234567890" required 
+           style="width: 100%; padding: 12px; margin-bottom: 5px; border: 1px solid #c742a8; border-radius: 4px; background-color: rgba(255, 255, 255, 0.1); box-sizing: border-box; transition: border-color 0.3s; color: #ffffff;">
+    <small style="display: block; margin-bottom: 20px; color: #ffffff; font-style: italic;">Tip: Use a phone number with WhatsApp to experience all features, including meeting notifications via WhatsApp.</small>
+
+    <label for="name" style="font-size: 15px; font-weight: bold; color: #c742a8; margin-bottom: 10px; display: block;">Name:</label>
+    <input type="text" id="name" name="full-name" required 
+           style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #c742a8; border-radius: 4px; background-color: rgba(255, 255, 255, 0.1); box-sizing: border-box; transition: border-color 0.3s; color: #ffffff;">
+
+    <label for="email" style="font-size: 15px; font-weight: bold; color: #c742a8; margin-bottom: 10px; display: block;">Email Address:</label>
+    <input type="email" id="email" name="email" required 
+           style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #c742a8; border-radius: 4px; background-color: rgba(255, 255, 255, 0.1); box-sizing: border-box; transition: border-color 0.3s; color: #ffffff;">
+
+    <label for="company" style="font-size: 15px; font-weight: bold; color: #c742a8; margin-bottom: 10px; display: block;">Company Name:</label>
+    <input type="text" id="company" name="company-name" required 
+           style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #c742a8; border-radius: 4px; background-color: rgba(255, 255, 255, 0.1); box-sizing: border-box; transition: border-color 0.3s; color: #ffffff;">
+
+    <label for="website" style="font-size: 15px; font-weight: bold; color: #c742a8; margin-bottom: 10px; display: block;">Website URL (optional, include https://):</label>
+    <input type="url" id="website" name="website" pattern="https://.*" placeholder="https://example.com" 
+           style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #c742a8; border-radius: 4px; background-color: rgba(255, 255, 255, 0.1); box-sizing: border-box; transition: border-color 0.3s; color: #ffffff;">
+
+    <!-- Noodzakelijke toestemming -->
+    <label style="font-size: 14px; color: #ffffff; display: block; margin-bottom: 15px;">
+      <input type="checkbox" name="permission" required style="margin-right: 10px;">
+      I agree to be contacted by phone, email, and/or WhatsApp as necessary to test the demo.
+    </label>
+
+    <!-- Optionele toestemming voor AI training -->
+    <label style="font-size: 14px; color: #ffffff; display: block; margin-bottom: 15px;">
+      <input type="checkbox" name="consent_ai" style="margin-right: 10px;">
+      I consent to my data and the call transcript being stored for the purpose of AI training.
+    </label>
+    
+    <small style="display: block; margin-bottom: 20px; color: #ffffff;">By submitting, you agree to our <a href="https://www.swiftleadsai.com" target="_blank" style="color: #c742a8; text-decoration: underline;">Privacy Policy</a> and <a href="https://www.swiftleadsai.com" target="_blank" style="color: #c742a8; text-decoration: underline;">Terms and Conditions</a>.</small>
+
+    <input type="submit" value="Submit" 
+           style="width: 100%; padding: 12px; background-color: #c742a8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background-color 0.3s; box-sizing: border-box;">
+  </form>
+  
+  <div id="success-message" style="display: none; padding: 20px; background-color: rgba(224, 247, 231, 0.1); color: #c742a8; border-radius: 8px; margin-top: 20px; text-align: center;">
+    Your form has been successfully submitted!
+  </div>
+</div>
+
+<script>
+  document.getElementById('lead-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var formData = new FormData(this);
+
+    fetch('https://hook.eu2.make.com/w7elsozavay0omh0qg1jaa0a29ahfu0f', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(response) {
+      if (response.ok) {
+        document.getElementById('lead-form').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+      } else {
+        alert('There was an error submitting the form. Please try again.');
+      }
+    })
+    .catch(function(error) {
+      alert('There was an error submitting the form. Please try again.');
+    });
+  });
+</script>
+
+<style>
+  input:focus, select:focus {
+    border-color: #c742a8;
+    outline: none;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #a03589;
+  }
+</style>
